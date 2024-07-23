@@ -1,4 +1,4 @@
-package com.employees.managment.secureConfigration;
+package com.employee.management.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
