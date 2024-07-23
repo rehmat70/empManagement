@@ -1,10 +1,8 @@
-package com.employees.managment.Entities;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+package com.employee.management.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
-
 
 @Entity
 @Data
@@ -14,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "department", schema = "operation")
-public class jobDepartment {
+public class JobDepartment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_department")
     @SequenceGenerator(name = "seq_department", sequenceName = "seq_department", allocationSize = 1)
@@ -31,9 +29,11 @@ public class jobDepartment {
     @Column(name = "salary_range")
     private String salaryRange;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "jobDepartment", fetch = FetchType.LAZY)
-    private List<employees> employees;
+    @JsonBackReference
+    @OneToOne()
+    @JoinColumn(name = "employee_Id")
+    // @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Employee employees;
 
 
 }
