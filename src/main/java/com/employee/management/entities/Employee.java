@@ -1,4 +1,4 @@
-package com.employees.managment.Entities;
+package com.employee.management.entities;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ import java.util.List;
 )
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class employees {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emp")
     @SequenceGenerator(name = "seq_emp", sequenceName = "seq_emp", allocationSize = 1)
@@ -44,21 +44,12 @@ public class employees {
     @Column(name = "emp_email")
     private String email;
 
-
-//    //OneToOne Uni Directional mapping
-//    @OneToOne(fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL
-//    )
-//    @JoinColumn(name = "dep_Id", referencedColumnName = "jobDepartment_Id")
-//    private jobDepartment jobDepartment;
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id") // assu:ming department_id is the foreign key column in the employee table
-    private jobDepartment jobDepartment;
+    @JsonManagedReference
+    @OneToOne(mappedBy = "employees", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private JobDepartment jobDepartment;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "pay_Id")
-    private payroll payroll;
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Payroll> payroll;
 
 }
