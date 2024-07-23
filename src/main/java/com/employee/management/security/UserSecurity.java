@@ -1,4 +1,4 @@
-package com.employees.managment.secureConfigration;
+package com.employee.management.security;
 
 import jakarta.persistence.*;
 import lombok.Getter;

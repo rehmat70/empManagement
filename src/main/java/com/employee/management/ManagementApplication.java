@@ -1,8 +1,7 @@
-package com.employees.managment;
+package com.employee.management;
 
 
-import com.employees.managment.secureConfigration.UserSecurity;
-import com.employees.managment.secureRepositoryConfigration.userSecurityRepository;
+import com.employee.management.security.UserSecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,15 +9,37 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan({"com.employees.managment.Entities", "com.employees.managment.secureConfigration", "com.employees.managment.rController"})
-public class ManagmentApplication implements CommandLineRunner {
+@EntityScan({"com.employee.management.Entities", "com.employee.management.security", "com.employee.management.controller"})
+//@OpenAPIDefinition(
+//		info = @Info(
+//				title = "Employees Management System API",
+//				version = "1.0",
+//				description = "API documentation for the Employees Management System"
+//		),
+//		security = @SecurityRequirement(name = "basicAuth")
+//)
+//@SecurityScheme(
+//		name = "basicAuth",
+//		type = SecuritySchemeType.HTTP,
+//		scheme = "basic",
+//		in = SecuritySchemeIn.HEADER
+//)
+public class ManagementApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(ManagmentApplication.class, args);
+		SpringApplication.run(ManagementApplication.class, args);
 	}
-@Autowired
-	private userSecurityRepository userSecurityRepository;
+    @Autowired
+	private UserSecurityRepository userSecurityRepository;
+
+	//	@Bean
+//	public GroupedOpenApi employeeApi() {
+//		return GroupedOpenApi.builder()
+//				.group("employeeApi")
+//				.packagesToScan("com.employees.management.system")
+//				.build();
+//	}
 
 	@Override
 	public void run(String... args) throws Exception {

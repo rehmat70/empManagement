@@ -1,6 +1,6 @@
-package com.employees.managment.secureConfigration;
+package com.employee.management.security;
 
-import com.employees.managment.secureRepositoryConfigration.userSecurityRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,9 +8,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class customUserDetailsService implements UserDetailsService {
+@RequiredArgsConstructor
+public class CustomUserDetailsService implements UserDetailsService {
+
     @Autowired
-private userSecurityRepository userSecurityRepository;
+    private final UserSecurityRepository userSecurityRepository;
 
 
     @Override
